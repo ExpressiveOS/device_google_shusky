@@ -30,4 +30,18 @@ PRODUCT_BUILD_PROP_OVERRIDES += \
     BuildSystemFingerprint=google/generic_system_google/generic:17/CP3A.261005.005/16271449:user/release-keys \
     DeviceProduct=$(DEVICE_CODENAME)
 
+# Evolution X puts these in /system, which generic_system.mk's artifact-path
+# rules forbid for device makefiles: AppDataBackup (its skip-on-Pixel check reads
+# PRODUCT_MANUFACTURER, which inherited product makefiles never see) and the
+# vendor/gms system apps (vendor/gms only allow-lists its blobs). Allow them, as
+# LineageOS does for its own /system additions.
+PRODUCT_ARTIFACT_PATH_REQUIREMENT_ALLOWED_LIST += \
+    system/etc/permissions/privapp-permissions-appbackup.xml \
+    system/priv-app/AppDataBackup/% \
+    system/app/GoogleExtShared/% \
+    system/app/GooglePrintRecommendationService/% \
+    system/priv-app/DocumentsUIGoogle/% \
+    system/priv-app/GooglePackageInstaller/% \
+    system/priv-app/TagGoogle/%
+
 $(call inherit-product, $(VENDOR_PATH)/$(DEVICE_CODENAME)-vendor.mk)
