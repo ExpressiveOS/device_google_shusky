@@ -95,3 +95,11 @@ PRODUCT_PACKAGES += \
 # Keep Google Play services from preparing Google's OTAs (sysconfig/disable-google-ota.xml).
 PRODUCT_COPY_FILES += \
     $(DEVICE_PATH)/sysconfig/disable-google-ota.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/disable-google-ota.xml
+
+# Values stock husky (CP3A.261005.005) sets that our build left at the AOSP default
+PRODUCT_PACKAGES += \
+    FrameworkResOverlayStockHusky \
+    MediaProviderOverlayStockHusky \
+    SettingsOverlayStockHusky \
+    SystemUIOverlayStockHusky \
+    WifiOverlayStockHusky

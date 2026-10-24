@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!--
+    SPDX-FileCopyrightText: The LineageOS Project
+    SPDX-License-Identifier: Apache-2.0
+-->
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="android.overlay.stock.husky">
+    <!-- Values stock husky (CP3A.261005.005) sets and our build didn't. Priority 2: vendor/pixel-style's Pixelframework-res (priority 1) sets a 3840x2160 external display peak; stock husky's is 3440x1600. -->
+    <overlay
+        android:isStatic="true"
+        android:priority="2"
+        android:targetPackage="android" />
+</manifest>
