@@ -75,3 +75,11 @@ PRODUCT_SOONG_NAMESPACES += \
 
 # Window extensions
 $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
+
+# Adaptive Connectivity Services (SCONE) and Google Fi (Tycho): vendor/gms
+# defines both, but gms_full.mk's PRODUCT_MANUFACTURER filter doesn't match
+# inside inherit-product, so neither was installed. SCONE's privileged
+# permission allowlist already ships (privapp-permissions-google-p*.xml).
+PRODUCT_PACKAGES += \
+    SCONE-v77459 \
+    Tycho
