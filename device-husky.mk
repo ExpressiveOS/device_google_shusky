@@ -91,3 +91,7 @@ PRODUCT_PACKAGES += \
 # NFC on after a clean flash, as stock
 PRODUCT_PACKAGES += \
     NfcOverlayHusky
+
+# Keep Google Play services from preparing Google's OTAs (sysconfig/disable-google-ota.xml).
+PRODUCT_COPY_FILES += \
+    $(DEVICE_PATH)/sysconfig/disable-google-ota.xml:$(TARGET_COPY_OUT_PRODUCT)/etc/sysconfig/disable-google-ota.xml
