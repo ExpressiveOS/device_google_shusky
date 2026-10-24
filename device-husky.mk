@@ -87,3 +87,7 @@ PRODUCT_PACKAGES += \
 # Updates come from denson9874/expressiveos_ota (ExpressiveOS's own feed and keys)
 PRODUCT_PACKAGES += \
     UpdaterOverlayHusky
+
+# NFC on after a clean flash, as stock
+PRODUCT_PACKAGES += \
+    NfcOverlayHusky
