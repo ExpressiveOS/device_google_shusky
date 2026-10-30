@@ -23,6 +23,11 @@ PRODUCT_SYSTEM_NAME := generic_system_google
 DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay-expressiveos
 
 # Boot animation
+# Only ExpressiveOS's own animation (vendor/extra/bootanimation), not Evolution X's
+# other styles (about 190 MiB in /product/media). Product config reads this file
+# before the ones it inherits, so this wins over vendor/lineage's common.mk default
+# (?= true) for every build of this tree.
+TARGET_INCLUDE_BOOT_ANIMATIONS := false
 TARGET_SCREEN_HEIGHT := 2992
 TARGET_SCREEN_WIDTH := 1344
 
