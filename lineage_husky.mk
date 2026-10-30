@@ -19,6 +19,9 @@ PRODUCT_SYSTEM_BRAND := google
 PRODUCT_SYSTEM_MANUFACTURER := Google
 PRODUCT_SYSTEM_NAME := generic_system_google
 
+# ExpressiveOS overlays
+DEVICE_PACKAGE_OVERLAYS += $(DEVICE_PATH)/overlay-expressiveos
+
 # Boot animation
 TARGET_SCREEN_HEIGHT := 2992
 TARGET_SCREEN_WIDTH := 1344
