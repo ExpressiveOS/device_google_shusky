@@ -83,3 +83,7 @@ $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
 PRODUCT_PACKAGES += \
     SCONE-v77459 \
     Tycho
+
+# Updates come from denson9874/expressiveos_ota (ExpressiveOS's own feed and keys)
+PRODUCT_PACKAGES += \
+    UpdaterOverlayHusky
