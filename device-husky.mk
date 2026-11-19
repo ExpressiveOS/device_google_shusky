@@ -1,19 +1,8 @@
 #
 # SPDX-FileCopyrightText: 2021 The Android Open-Source Project
-# SPDX-FileCopyrightText: The LineageOS Project
-# SPDX-FileCopyrightText: The Calyx Institute
+# SPDX-FileCopyrightText: 2026 The ExpressiveOS Project
 # SPDX-License-Identifier: Apache-2.0
 #
-
-# Kernel
-TARGET_LINUX_KERNEL_VERSION := 6.1
-TARGET_KERNEL_DEVICE := shusky
-TARGET_KERNEL_DIR := device/google/$(TARGET_KERNEL_DEVICE)-kernels/$(TARGET_LINUX_KERNEL_VERSION)
-TARGET_KERNEL_PLATFORM_SOURCE := google/gs-$(TARGET_LINUX_KERNEL_VERSION)
-
-ifneq ($(TARGET_BOOTS_16K),true)
-PRODUCT_16K_DEVELOPER_OPTION := true
-endif
 
 # Inherit from zuma
 include device/google/zuma/common.mk
@@ -44,11 +33,8 @@ PRODUCT_PACKAGES += \
     SettingsHuskyOverlay \
     SystemUIGoogleOverlayVendorHusky
 
-PRODUCT_PACKAGES += \
-    ApertureOverlayHusky
-
 # PowerShare
-include hardware/google/pixel/powershare/device.mk
+include hardware/google/pixel/eos_powershare/device.mk
 
 # Preinstalled packages
 PRODUCT_COPY_FILES += \
@@ -76,10 +62,7 @@ PRODUCT_SOONG_NAMESPACES += \
 # Window extensions
 $(call inherit-product, $(SRC_TARGET_DIR)/product/window_extensions.mk)
 
-# Adaptive Connectivity Services (SCONE) and Google Fi (Tycho): vendor/gms
-# defines both, but gms_full.mk's PRODUCT_MANUFACTURER filter doesn't match
-# inside inherit-product, so neither was installed. SCONE's privileged
-# permission allowlist already ships (privapp-permissions-google-p*.xml).
+# Adaptive Connectivity Services (SCONE) and Google Fi (Tycho)
 PRODUCT_PACKAGES += \
     SCONE-v77459 \
     Tycho
@@ -104,10 +87,7 @@ PRODUCT_PACKAGES += \
     SystemUIOverlayStockHusky \
     WifiOverlayStockHusky
 
-# Wild Kernels' boot (EOS_WILD_BOOT, BoardConfig): its release, 6.x.y-androidNN-Wild, isn't a
-# GKI release string, so the build's kernel VINTF check can't tell its kernel FCM level and
-# fails. Off for that boot only: the kernel is Google's GKI of the same KMI with BakaSU and
-# susfs added, booted on a phone first. A product variable, so here and not in BoardConfig.
+# Wild Kernels' boot (EOS_WILD_BOOT, BoardConfig)
 ifneq ($(EOS_WILD_BOOT),)
 PRODUCT_OTA_ENFORCE_VINTF_KERNEL_REQUIREMENTS := false
 endif
